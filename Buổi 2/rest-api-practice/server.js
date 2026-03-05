@@ -40,6 +40,22 @@ app.post("/users", (req, res) => {
 
   res.status(201).json(newUser);
 });
+//  PUT - Update toàn bộ user
+app.put("/users/:id", (req, res) => {
+
+  const id = parseInt(req.params.id);
+
+  const user = users.find(u => u.id === id);
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  user.name = req.body.name;
+  user.email = req.body.email;
+
+  res.status(200).json(user);
+});
 
 // 4. PATCH - Update email
 app.patch("/users/:id", (req, res) => {
