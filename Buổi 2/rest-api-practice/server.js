@@ -88,17 +88,3 @@ app.delete("/users/:id", (req, res) => {
 
   res.status(204).send();
 });
-
-// Test lỗi 429
-app.get("/limit", (req, res) => {
-  res.status(429).json({ error: "Too many requests" });
-});
-
-// Test lỗi 500
-app.get("/error", (req, res) => {
-  res.status(500).json({ error: "Internal Server Error" });
-});
-
-app.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
-});
