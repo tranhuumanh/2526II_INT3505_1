@@ -46,7 +46,7 @@ def token_required(f):
 # --- 2. API ĐĂNG NHẬP (TẠO TOKEN) ---
 @app.route('/login', methods=['POST'])
 def login():
-    # Tạo Payload (Nội dung bên trong token)
+    # Tạo Payload (Nội dung bên trong token)    
     payload = {
         'user_id': 99,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30) # Hết hạn sau 30p
