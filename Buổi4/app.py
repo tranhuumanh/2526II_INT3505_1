@@ -1,7 +1,5 @@
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request
 from flask_swagger_ui import get_swaggerui_blueprint
-import os
-
 
 app = Flask(__name__)
 
@@ -17,7 +15,7 @@ books = [
 # Swagger UI config
 # =========================
 SWAGGER_URL = '/api-docs'
-API_URL = '/swagger/DemoOpenAPI.yaml'   # ✅ sửa đúng tên file của bạn
+API_URL = '/static/DemoOpenAPI.yaml'   # ✅ FIX CHÍNH Ở ĐÂY
 
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
@@ -27,16 +25,13 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
-# Serve YAML file
-@app.route("/swagger/DemoOpenAPI.yaml")
-def swagger_yaml():
-    file_path = os.path.join(os.path.dirname(__file__), "DemoOpenAPI.yaml")
-    with open(file_path, "r", encoding="utf-8") as f:
-        return Response(f.read(), mimetype="text/yaml")
-
 # =========================
 # API endpoints
 # =========================
+
+@app.route("/")
+def home():
+    return {"message": "Book API running", "docs": "/api-docs"}
 
 @app.route("/books", methods=["GET"])
 def get_books():
