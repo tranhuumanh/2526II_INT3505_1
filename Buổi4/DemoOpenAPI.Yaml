@@ -6,6 +6,9 @@ info:
 
 servers:
   - url: http://localhost:5000
+tags:
+  - name: Books
+    description: Các thao tác liên quan đến sách
 
 paths:
   /books:
