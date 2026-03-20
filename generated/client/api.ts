@@ -14,29 +14,75 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
-import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 
+/**
+ * 
+ * @export
+ * @interface Book
+ */
 export interface Book {
+    /**
+     * 
+     * @type {number}
+     * @memberof Book
+     */
     'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Book
+     */
     'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Book
+     */
     'author'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Book
+     */
     'publishedYear'?: number;
 }
+/**
+ * 
+ * @export
+ * @interface BookInput
+ */
 export interface BookInput {
+    /**
+     * 
+     * @type {string}
+     * @memberof BookInput
+     */
     'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof BookInput
+     */
     'author': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof BookInput
+     */
     'publishedYear'?: number;
 }
 
 /**
  * DefaultApi - axios parameter creator
+ * @export
  */
 export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
@@ -46,7 +92,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        booksGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/books`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -59,8 +105,8 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            localVarHeaderParameter['Accept'] = 'application/json';
 
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -77,7 +123,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksIdGet: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        booksIdGet: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('booksIdGet', 'id', id)
             const localVarPath = `/books/{id}`
@@ -93,8 +139,8 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            localVarHeaderParameter['Accept'] = 'application/json';
 
+    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -111,7 +157,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksPost: async (bookInput: BookInput, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        booksPost: async (bookInput: BookInput, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'bookInput' is not null or undefined
             assertParamExists('booksPost', 'bookInput', bookInput)
             const localVarPath = `/books`;
@@ -126,6 +172,8 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+
+    
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -143,6 +191,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
 
 /**
  * DefaultApi - functional programming interface
+ * @export
  */
 export const DefaultApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration)
@@ -153,11 +202,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async booksGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Book>>> {
+        async booksGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Book>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.booksGet(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.booksGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -166,11 +213,9 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async booksIdGet(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book>> {
+        async booksIdGet(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Book>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.booksIdGet(id, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.booksIdGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * 
@@ -179,17 +224,16 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async booksPost(bookInput: BookInput, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async booksPost(bookInput: BookInput, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.booksPost(bookInput, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DefaultApi.booksPost']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
  * DefaultApi - factory interface
+ * @export
  */
 export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = DefaultApiFp(configuration)
@@ -200,7 +244,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<Book>> {
+        booksGet(options?: any): AxiosPromise<Array<Book>> {
             return localVarFp.booksGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -210,7 +254,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksIdGet(id: number, options?: RawAxiosRequestConfig): AxiosPromise<Book> {
+        booksIdGet(id: number, options?: any): AxiosPromise<Book> {
             return localVarFp.booksIdGet(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -220,7 +264,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        booksPost(bookInput: BookInput, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        booksPost(bookInput: BookInput, options?: any): AxiosPromise<void> {
             return localVarFp.booksPost(bookInput, options).then((request) => request(axios, basePath));
         },
     };
@@ -228,6 +272,9 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
 
 /**
  * DefaultApi - object-oriented interface
+ * @export
+ * @class DefaultApi
+ * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
     /**
@@ -235,8 +282,9 @@ export class DefaultApi extends BaseAPI {
      * @summary Lấy danh sách sách
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof DefaultApi
      */
-    public booksGet(options?: RawAxiosRequestConfig) {
+    public booksGet(options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).booksGet(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -246,8 +294,9 @@ export class DefaultApi extends BaseAPI {
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof DefaultApi
      */
-    public booksIdGet(id: number, options?: RawAxiosRequestConfig) {
+    public booksIdGet(id: number, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).booksIdGet(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -257,8 +306,9 @@ export class DefaultApi extends BaseAPI {
      * @param {BookInput} bookInput 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
+     * @memberof DefaultApi
      */
-    public booksPost(bookInput: BookInput, options?: RawAxiosRequestConfig) {
+    public booksPost(bookInput: BookInput, options?: AxiosRequestConfig) {
         return DefaultApiFp(this.configuration).booksPost(bookInput, options).then((request) => request(this.axios, this.basePath));
     }
 }
