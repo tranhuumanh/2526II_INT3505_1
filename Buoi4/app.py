@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, Response
 from flask_swagger_ui import get_swaggerui_blueprint
 import os
+from flask import send_file
 
 
 app = Flask(__name__)
@@ -27,14 +28,12 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 # Serve YAML file
+
 @app.route("/swagger/DemoOpenAPI.yaml")
 def swagger_yaml():
-    try:
-        file_path = os.path.join(os.path.dirname(__file__), "DemoOpenAPI.yaml")
-        with open(file_path, "r", encoding="utf-8") as f:
-            return Response(f.read(), mimetype="text/yaml")
-    except Exception as e:
-        return {"error": str(e)}, 500
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "DemoOpenAPI.yaml")
+    return send_file(file_path)
 # =========================
 # API endpoints
 # =========================
