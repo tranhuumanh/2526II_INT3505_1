@@ -17,8 +17,7 @@ books = [
 # Swagger UI config
 # =========================
 SWAGGER_URL = '/api-docs'
-API_URL = '/swagger/DemoOpenAPI.yaml'   # ✅ sửa đúng tên file của bạn
-
+API_URL = '/swagger/DemoOpenAPI.yaml'   
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
