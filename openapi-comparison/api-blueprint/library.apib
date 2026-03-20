@@ -1,0 +1,54 @@
+FORMAT: 1A
+HOST: http://localhost:5000
+
+# Book Management API
+API quản lý sách đơn giản phục vụ demo so sánh các định dạng tài liệu.
+
+# Group Books
+Các thao tác liên quan đến sách.
+
+## Books Collection [/books]
+
+### Lấy danh sách sách [GET]
++ Response 200 (application/json)
+    + Attributes (array[Book])
+
+### Tạo sách mới [POST]
++ Request (application/json)
+    + Attributes (BookInput)
+
++ Response 201 (application/json)
+    + Body
+            { "message": "Tạo thành công" }
+
+## Book Detail [/books/{id}]
++ Parameters
+    + id: 1 (number, required) - ID của cuốn sách
+
+### Lấy chi tiết sách [GET]
++ Response 200 (application/json)
+    + Attributes (Book)
+
+### Cập nhật sách [PUT]
++ Request (application/json)
+    + Attributes (BookInput)
+
++ Response 200 (application/json)
+    + Body
+            { "message": "Cập nhật thành công" }
+
+### Xóa sách [DELETE]
++ Response 204
+
+# Data Structures
+
+## Book
++ id: 1 (number)
++ title: "Tên sách" (string)
++ author: "Tác giả" (string)
++ publishedYear: 2024 (number)
+
+## BookInput
++ title: "Tên sách" (string, required)
++ author: "Tác giả" (string, required)
++ publishedYear: 2024 (number)

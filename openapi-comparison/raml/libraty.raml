@@ -1,0 +1,56 @@
+#%RAML 1.0
+title: Book Management API
+version: 1.0.0
+baseUri: http://localhost:5000
+mediaType: application/json
+
+types:
+  Book:
+    type: object
+    properties:
+      id?: integer
+      title: string
+      author: string
+      publishedYear: integer
+  
+  BookInput:
+    type: object
+    properties:
+      title: string
+      author: string
+      publishedYear?: integer
+
+/books:
+  get:
+    description: Lấy danh sách sách
+    responses:
+      200:
+        body:
+          application/json:
+            type: Book[]
+  post:
+    description: Tạo sách mới
+    body:
+      application/json:
+        type: BookInput
+    responses:
+      201:
+        description: Tạo thành công
+
+/books/{id}:
+  uriParameters:
+    id: integer
+  get:
+    description: Lấy chi tiết sách
+    responses:
+      200:
+        body:
+          type: Book
+  put:
+    body:
+      type: BookInput
+    responses:
+      200:
+  delete:
+    responses:
+      204:
