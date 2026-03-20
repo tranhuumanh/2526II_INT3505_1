@@ -22,7 +22,7 @@ API_URL = '/swagger/DemoOpenAPI.yaml'   # ✅ sửa đúng tên file của bạn
 swaggerui_blueprint = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
-    config={'app_name': "Book API"}
+    config={'app_name': "API"}
 )
 
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
@@ -30,10 +30,12 @@ app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 # Serve YAML file
 @app.route("/swagger/DemoOpenAPI.yaml")
 def swagger_yaml():
-    file_path = os.path.join(os.path.dirname(__file__), "DemoOpenAPI.yaml")
-    with open(file_path, "r", encoding="utf-8") as f:
-        return Response(f.read(), mimetype="text/yaml")
-
+    try:
+        file_path = os.path.join(os.path.dirname(__file__), "DemoOpenAPI.yaml")
+        with open(file_path, "r", encoding="utf-8") as f:
+            return Response(f.read(), mimetype="text/yaml")
+    except Exception as e:
+        return {"error": str(e)}, 500
 # =========================
 # API endpoints
 # =========================
