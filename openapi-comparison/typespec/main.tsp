@@ -5,7 +5,8 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-@service({
+// Sửa từ { } sang #{ }
+@service(#{
   title: "Book Management API",
 })
 @server("http://localhost:5000", "Local server")
@@ -28,7 +29,7 @@ model BookInput {
 @tag("Books")
 interface Books {
   @get list(): Book[];
-  
+
   @post create(@body book: BookInput): {
     @statusCode statusCode: 201;
   };

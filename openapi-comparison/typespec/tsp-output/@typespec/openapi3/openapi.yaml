@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  title: Book Management API
+  version: 0.0.0
+tags:
+  - name: Books
+paths:
+  /books:
+    get:
+      operationId: Books_list
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+      tags:
+        - Books
+    post:
+      operationId: Books_create
+      parameters: []
+      responses:
+        '201':
+          description: The request has succeeded and a new resource has been created as a result.
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+  /books/{id}:
+    get:
+      operationId: Books_read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+      tags:
+        - Books
+    put:
+      operationId: Books_update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+      tags:
+        - Books
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+    delete:
+      operationId: Books_delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+      tags:
+        - Books
+components:
+  schemas:
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - publishedYear
+      properties:
+        id:
+          type: integer
+          format: int32
+        title:
+          type: string
+        author:
+          type: string
+        publishedYear:
+          type: integer
+          format: int32
+    BookInput:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        publishedYear:
+          type: integer
+          format: int32
+servers:
+  - url: http://localhost:5000
+    description: Local server
+    variables: {}
