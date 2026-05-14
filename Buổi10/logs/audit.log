@@ -1,0 +1,31 @@
+{"timestamp": "2026-05-14 07:25:01,193", "level": "INFO", "message": "[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.11.7.113:5000"}
+{"timestamp": "2026-05-14 07:25:01,193", "level": "INFO", "message": "[33mPress CTRL+C to quit[0m"}
+{"timestamp": "2026-05-14 07:25:08,848", "level": "INFO", "message": "GET / 404 0.0006s"}
+{"timestamp": "2026-05-14 07:25:08,849", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:25:08] "[33mGET / HTTP/1.1[0m" 404 -"}
+{"timestamp": "2026-05-14 07:25:08,980", "level": "INFO", "message": "GET /favicon.ico 404 0.0002s"}
+{"timestamp": "2026-05-14 07:25:08,982", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:25:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -"}
+{"timestamp": "2026-05-14 07:25:30,470", "level": "INFO", "message": "GET / 404 0.0002s"}
+{"timestamp": "2026-05-14 07:25:30,470", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:25:30] "[33mGET / HTTP/1.1[0m" 404 -"}
+{"timestamp": "2026-05-14 07:25:33,849", "level": "INFO", "message": "GET /unstable 404 0.0001s"}
+{"timestamp": "2026-05-14 07:25:33,849", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:25:33] "[33mGET /unstable HTTP/1.1[0m" 404 -"}
+{"timestamp": "2026-05-14 07:26:12,836", "level": "INFO", "message": "GET /metrics 200 0.0014s"}
+{"timestamp": "2026-05-14 07:26:12,837", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:12] "GET /metrics HTTP/1.1" 200 -"}
+{"timestamp": "2026-05-14 07:26:12,948", "level": "INFO", "message": "GET /favicon.ico 404 0.0002s"}
+{"timestamp": "2026-05-14 07:26:12,948", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:12] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -"}
+{"timestamp": "2026-05-14 07:26:28,786", "level": "INFO", "message": "GET /api/ping 200 0.0011s"}
+{"timestamp": "2026-05-14 07:26:28,788", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:28] "GET /api/ping HTTP/1.1" 200 -"}
+{"timestamp": "2026-05-14 07:26:40,717", "level": "INFO", "message": "GET /api/ping 200 0.0004s"}
+{"timestamp": "2026-05-14 07:26:40,718", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:40] "GET /api/ping HTTP/1.1" 200 -"}
+{"timestamp": "2026-05-14 07:26:41,321", "level": "INFO", "message": "GET /api/ping 200 0.0005s"}
+{"timestamp": "2026-05-14 07:26:41,321", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:41] "GET /api/ping HTTP/1.1" 200 -"}
+{"timestamp": "2026-05-14 07:26:41,771", "level": "INFO", "message": "GET /api/ping 200 0.0005s"}
+{"timestamp": "2026-05-14 07:26:41,771", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:41] "GET /api/ping HTTP/1.1" 200 -"}
+{"timestamp": "2026-05-14 07:26:42,413", "level": "INFO", "message": "ratelimit 3 per 10 second (127.0.0.1) exceeded at endpoint: ping"}
+{"timestamp": "2026-05-14 07:26:42,413", "level": "INFO", "message": "GET /api/ping 429 0.0008s"}
+{"timestamp": "2026-05-14 07:26:42,414", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:42] "[31m[1mGET /api/ping HTTP/1.1[0m" 429 -"}
+{"timestamp": "2026-05-14 07:26:42,657", "level": "INFO", "message": "ratelimit 3 per 10 second (127.0.0.1) exceeded at endpoint: ping"}
+{"timestamp": "2026-05-14 07:26:42,657", "level": "INFO", "message": "GET /api/ping 429 0.0009s"}
+{"timestamp": "2026-05-14 07:26:42,658", "level": "INFO", "message": "127.0.0.1 - - [14/May/2026 07:26:42] "[31m[1mGET /api/ping HTTP/1.1[0m" 429 -"}
